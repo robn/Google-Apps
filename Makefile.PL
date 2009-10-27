@@ -16,6 +16,7 @@ WriteMakefile(
         'Class::Accessor' => 0,
         'LWP::UserAgent' => 0,
         'XML::Spice' => 0,
+        'Text::CSV' => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Google-Apps-*' },

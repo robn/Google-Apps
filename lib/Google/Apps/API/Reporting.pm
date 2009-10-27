@@ -6,6 +6,7 @@ use strict;
 use Carp;
 use POSIX qw(strftime);
 use XML::Spice qw(rest type token domain date page reportType reportName);
+use Text::CSV;
 
 sub new {
     my ($class, %args) = @_;
@@ -43,6 +44,31 @@ sub report_csv {
     return $res->content if $res->is_success;
 
     die "XXX error bad bad bad";
+}
+
+sub report_hash {
+    my ($self, %args) = @_;
+
+    my $csv = $self->report_csv(%args);
+
+    my $c = Text::CSV->new;
+
+    my @report;
+
+    my @header;
+    while ($csv =~ m/\G\s*^(.*?)$/mgc) {
+        $c->parse($1);
+        if (!@header) {
+            @header = $c->fields;
+            next;
+        }
+
+        my %row;
+        @row{@header} = $c->fields;
+        push @report, \%row;
+    }
+
+    return \@report;
 }
 
 1;
