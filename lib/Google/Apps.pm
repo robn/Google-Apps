@@ -6,6 +6,8 @@ use strict;
 use Carp;
 use LWP::UserAgent;
 
+use Google::Apps::API::Reporting;
+
 use base qw(Class::Accessor);
 __PACKAGE__->mk_ro_accessors(qw(domain username password ua));
 
