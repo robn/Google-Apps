@@ -5,12 +5,12 @@ use strict;
 
 use Google::Apps;
 
-@ARGV == 3 or print "usage: $0 domain user pass\n" and exit -1;
+@ARGV == 3 or print "usage: $0 domain username password\n" and exit -1;
 
 my $apps = Google::Apps->new(
-    domain => $ARGV[0],
-    user   => $ARGV[1],
-    passwd => $ARGV[2],
+    domain   => $ARGV[0],
+    username => $ARGV[1],
+    password => $ARGV[2],
 );
 
 my $r = $apps->get_reporting_api;
