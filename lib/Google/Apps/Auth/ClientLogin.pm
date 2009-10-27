@@ -22,12 +22,13 @@ sub new {
 
     my $ua = $args{ua} || LWP::UserAgent->new(timeout => 10, env_proxy => 1);
 
-    my $res = $ua->post("https://www.google.com/accounts/ClientLogin",
+    my $res = $ua->post("https://www.google.com/accounts/ClientLogin", {
                         accountType => $account_type,
                         service     => $service,
                         source      => $source,
                         Email       => $email,
-                        Passwd      => $password);
+                        Passwd      => $password
+    });
     
     croak "ClientLogin failed: ".$res->status_line if !$res->is_success;
 
