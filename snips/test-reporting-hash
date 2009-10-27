@@ -1,0 +1,24 @@
+#!/usr/bin/env perl
+
+use warnings;
+use strict;
+
+package test;
+
+use base qw(Google::Apps::API::Reporting);
+
+sub new {
+    return bless \do { my $s }, shift;
+}
+
+sub report_csv {
+    return "foo,bar,baz\nwoo,war,waz\nzoo,zar,zaz\n";
+}
+
+package main;
+
+my $r = test->new;
+my $h = test->report_hash;
+
+use Data::Dumper;
+print Dumper $h;
