@@ -6,6 +6,9 @@ use strict;
 use LWP::UserAgent;
 use Carp;
 
+use base qw(Class::Accessor);
+__PACKAGE__->mk_ro_accessors(qw(auth sid lsid));
+
 sub new {
     my ($class, %args) = @_;
 
@@ -35,21 +38,6 @@ sub new {
     };
 
     return bless $self, $class;
-}
-
-sub auth {
-    my ($self) = @_;
-    return $self->{auth};
-}
-
-sub sid {
-    my ($self) = @_;
-    return $self->{sid};
-}
-
-sub lsid {
-    my ($self) = @_;
-    return $self->{lsid};
 }
 
 1;
