@@ -6,6 +6,7 @@ use strict;
 use Carp;
 use LWP::UserAgent;
 
+use Google::Apps::Auth::ClientLogin;
 use Google::Apps::API::Reporting;
 
 use base qw(Class::Accessor);
@@ -25,6 +26,16 @@ sub new {
     $self->{ua} = $args{ua} || LWP::UserAgent->new(timeout => 10, env_proxy => 1);
 
     return bless $self, $class;
+}
+
+sub auth {
+    my ($self) = @_;
+
+    $self->{auth} = Google::Apps::Auth::ClientLogin->new(ua => $self->{ua},
+                                                         email => $self->{username}.'@'.$self->{domain},
+                                                         password => $self->{password}) unless exists $self->{auth};
+
+    return $self->{auth};
 }
 
 sub reporting_api {
