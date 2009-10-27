@@ -30,7 +30,7 @@ sub reporting_api {
 
     return $self->{api}->{reporting} if exists $self->{api}->{reporting};
 
-    return Google::Apps::API::Reporting->new;
+    return Google::Apps::API::Reporting->new(apps => $self);
 }
 
 1;
