@@ -25,4 +25,12 @@ sub new {
     return bless $self, $class;
 }
 
+sub reporting_api {
+    my ($self) = @_;
+
+    return $self->{api}->{reporting} if exists $self->{api}->{reporting};
+
+    return Google::Apps::API::Reporting->new;
+}
+
 1;

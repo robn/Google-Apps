@@ -13,7 +13,7 @@ my $apps = Google::Apps->new(
     password => $ARGV[2],
 );
 
-my $r = $apps->get_reporting_api;
+my $r = $apps->reporting_api;
 
 my $csv = $r->report_csv(name => "accounts", date => "2009-10-25", page => 1);
 print $csv;
