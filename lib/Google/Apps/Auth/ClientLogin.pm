@@ -18,7 +18,7 @@ sub new {
     my $source = $args{source} || "";
 
     my $email = $args{email}  or croak "required argument 'email' not supplied";
-    my $passwd = $args{passwd} or croak "required argument 'passwd' not supplied";
+    my $password = $args{password} or croak "required argument 'password' not supplied";
 
     my $ua = $args{ua} || LWP::UserAgent->new(timeout => 10, env_proxy => 1);
 
@@ -27,7 +27,7 @@ sub new {
                         service     => $service,
                         source      => $source,
                         Email       => $email,
-                        Passwd      => $passwd);
+                        Passwd      => $password);
     
     croak "ClientLogin failed: ".$res->status_line if !$res->is_success;
 
