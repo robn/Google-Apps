@@ -14,6 +14,8 @@ WriteMakefile(
     PREREQ_PM => {
         'Test::More' => 0,
         'Class::Accessor' => 0,
+        'LWP::UserAgent' => 0,
+        'XML::Spice' => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Google-Apps-*' },
